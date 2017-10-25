@@ -1,4 +1,6 @@
-﻿namespace ConnectFour
+﻿using System;
+
+namespace ConnectFour
 {
     public class Game :IGame
     {
@@ -9,7 +11,7 @@
         }
         public void Start()
         {
-            _board.PrintState();
+            Console.Write(_board.PrintState());
         }
     }
 }
