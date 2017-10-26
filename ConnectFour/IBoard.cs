@@ -2,6 +2,6 @@
 {
     public interface IBoard
     {
-        string PrintState();
+        string PrintState(char[,] board);
     }
 }

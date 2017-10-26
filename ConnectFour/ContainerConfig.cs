@@ -12,6 +12,10 @@ namespace ConnectFour
 
             builder.RegisterType<Game>().As<IGame>();
 
+            builder.RegisterType<Player>().As<IPlayer>();
+
+            builder.RegisterType<Judge>().As<IJudge>();
+
             return builder.Build();
         }
     }

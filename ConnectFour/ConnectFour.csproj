@@ -61,6 +61,10 @@
     <Compile Include="Game.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="IGame.cs" />
+    <Compile Include="IJudge.cs" />
+    <Compile Include="IPlayer.cs" />
+    <Compile Include="Judge.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,10 +5,10 @@ namespace ConnectFour
 {
     public class Board : IBoard
     {
-        private  int[,] state = new int[8,8];
+        //private  int[,] board = new int[8,8];
         private int size = 8;
 
-        public string PrintState()
+        public string PrintState(char[,] board)
         {
             var builder = new StringBuilder();
 
@@ -17,7 +17,9 @@ namespace ConnectFour
                 string str = "";
                 for (int col = 0; col < 8; col++)
                 {
-                    str += " " + state[row, col];
+                    if (board[row, col] != 'Y' && board[row, col] != 'R')
+                        board[row, col] = '*';
+                    str += " " + board[row, col];
                 }
                 builder.Append(str);
                 builder.AppendLine();
