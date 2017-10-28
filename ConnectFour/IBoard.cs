@@ -3,5 +3,6 @@
     public interface IBoard
     {
         string PrintState(char[,] board);
+        string PrintCurrentState(char[,] board);
     }
 }

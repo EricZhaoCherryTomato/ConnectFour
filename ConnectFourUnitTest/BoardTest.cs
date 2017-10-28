@@ -14,16 +14,15 @@ namespace ConnectFourUnitTest
             Board board = new Board();
             char[,] state = new Char[8,8];
             var sut = board.PrintState(state);
-            string expectedResult =
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r\n" +
-                " 0 0 0 0 0 0 0 0\r";
+
+            string expectedResult = " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r";
 
             Assert.AreEqual(expectedResult, sut);
 
@@ -39,9 +38,9 @@ namespace ConnectFourUnitTest
             Player player = new Player();
             var state = new int[8, 8];
 
-            var sut = player.DropCoin(state, "1");
+            //var sut = player.DropCoin(state, "1");
 
-            Assert.AreEqual(sut,state);
+            //Assert.AreEqual(sut,state);
         }
 
     }

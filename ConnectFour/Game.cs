@@ -17,37 +17,37 @@ namespace ConnectFour
         }
         public void Start()
         {
-            char[,] board = new char[8, 8];
-            var p1 = _player;
-            p1.SetPlayerColor('Y');
-            var p2 = _player;
-            p2.SetPlayerColor('R');
-            int win;
+            char[,] board = new char[5, 5];
+            var p1 = _player.Create();
+            p1.SetPlayerColor('y');
+            var p2 = _player.Create();
+            p2.SetPlayerColor('r');
+            int win=0;
 
             Console.Write(_board.PrintState(board));
 
             do
             {
                 board = p1.DropCoin(board);
-                Console.Write(_board.PrintState(board));
-                win = _judge.CheckBoard(board, (Player) p1);
+                Console.Write(_board.PrintCurrentState(board));
+                //win = _judge.CheckBoard(board, (Player) p1);
 
-                if (win == 1)
-                {
-                    Console.WriteLine(p1.GetPlayerColor() + " Connected Four, You Win!");
-                }
+                //if (win == 1)
+                //{
+                //    Console.WriteLine(p1.GetPlayerColor() + " Connected Four, You Win!");
+                //}
 
                 board = p2.DropCoin(board);
-                Console.Write(_board.PrintState(board));
-                win = _judge.CheckBoard(board, (Player)p2);
+                Console.Write(_board.PrintCurrentState(board));
+                //win = _judge.CheckBoard(board, (Player)p2);
 
-                if (win == 1)
-                {
-                    Console.WriteLine(p2.GetPlayerColor() + " Connected Four, You Win!");
-                }
+                //if (win == 1)
+                //{
+                //    Console.WriteLine(p2.GetPlayerColor() + " Connected Four, You Win!");
+                //}
 
 
-                Console.Write(_board.PrintState(board));
+                //Console.Write(_board.PrintState(board));
                 
             } while (win!=1);
 
