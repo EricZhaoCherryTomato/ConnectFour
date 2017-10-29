@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace ConnectFour
+﻿namespace ConnectFour
 {
     public class Player : IPlayer
     {
         public char PlayerColor { get; set; }
+        public string PlayerName { get; set; }
 
 
         public char GetPlayerColor()
@@ -17,39 +16,31 @@ namespace ConnectFour
             PlayerColor = color;
         }
 
+        public string GetPlayerName()
+        {
+            return PlayerName;
+        }
+
         public char[,] DropCoin(char[,] board, int dropChoice)
         {
-            
-            //do
-            //{
-            //    Console.WriteLine("Please enter a number between 1 and 7: ");
-            //    //dropChoice = Convert.ToInt32(Console.ReadLine());
-            //    dropChoice--;
-            //} while (dropChoice < 0 || dropChoice > board.GetLength(1));
-
-            //while (board[0, dropChoice] == 'y' || board[0, dropChoice] == 'r')
-            //{
-            //    Console.WriteLine("That row is full, please enter a new row: ");
-            //    dropChoice = Convert.ToInt32(Console.ReadLine());
-            //}
-            
-
-            for (int row = board.GetLength(0)-1; row > 0; row--)
-            {
+            for (var row = board.GetLength(0) - 1; row > 0; row--)
                 if (board[row, dropChoice] == 'o')
                 {
-                    board[row, dropChoice] = this.PlayerColor;
+                    board[row, dropChoice] = PlayerColor;
                     break;
                 }
-            }
 
             return board;
+        }
+
+        public void SetPlayerName(string name)
+        {
+            PlayerName = name;
         }
 
         public Player Create()
         {
             return new Player();
         }
-
     }
 }

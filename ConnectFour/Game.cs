@@ -20,42 +20,38 @@ namespace ConnectFour
             char[,] board = new char[5, 5];
             var p1 = _player.Create();
             p1.SetPlayerColor('y');
+            p1.SetPlayerName("Yellows");
+            
             var p2 = _player.Create();
             p2.SetPlayerColor('r');
+            p2.SetPlayerName("Reds");
 
             Console.Write(_board.PrintState(board));
 
             do
             {
-                Console.Write("\n");
-                Console.WriteLine("Yellows Turn ");
-                int dropChoice = Convert.ToInt32(Console.ReadLine());
-                board = p1.DropCoin(board, dropChoice-1);
-                Console.Write(_board.PrintState(board));
-                var win = _judge.CheckBoard(board, (Player) p1);
-
-                if (win)
-                {
-                    Console.WriteLine("Yellow WINS !");
-                    break;
-                }
-                Console.Write("\n");
-                Console.WriteLine("Reds Turn ");
-                dropChoice = Convert.ToInt32(Console.ReadLine());
-                board = p2.DropCoin(board, dropChoice-1);
-                Console.Write(_board.PrintState(board));
-                win = _judge.CheckBoard(board, (Player)p2);
-
-                if (win)
-                {
-                    Console.WriteLine("Reds WINS!");
-                    break;
-                }
-
+                if (GetValue(p1, board)) break;
+                if (GetValue(p2, board)) break;
+                
             } while (true);
 
             Console.ReadKey(true);
 
+        }
+
+        private bool GetValue(Player player,  char[,] board)
+        {
+            Console.Write("\n");
+            Console.WriteLine(player.PlayerName + " Turn ");
+            var dropChoice = Convert.ToInt32(Console.ReadLine());
+            board = player.DropCoin(board, dropChoice - 1);
+            Console.Write(_board.PrintState(board));
+            var win = _judge.CheckBoard(board, player);
+
+            if (!win) return false;
+
+            Console.WriteLine(player.PlayerName + " WINS !");
+            return true;
         }
     }
 }
