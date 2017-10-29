@@ -49,7 +49,7 @@ namespace ConnectFour
             var win = _judge.CheckBoard(board, player);
 
             if (!win) return false;
-
+            Console.Write("\n");
             Console.WriteLine(player.PlayerName + " WINS !");
             return true;
         }
