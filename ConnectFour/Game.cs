@@ -22,36 +22,39 @@ namespace ConnectFour
             p1.SetPlayerColor('y');
             var p2 = _player.Create();
             p2.SetPlayerColor('r');
-            int win=0;
 
             Console.Write(_board.PrintState(board));
 
             do
             {
-                board = p1.DropCoin(board);
-                Console.Write(_board.PrintCurrentState(board));
-                //win = _judge.CheckBoard(board, (Player) p1);
+                Console.Write("\n");
+                Console.WriteLine("Yellows Turn ");
+                int dropChoice = Convert.ToInt32(Console.ReadLine());
+                board = p1.DropCoin(board, dropChoice-1);
+                Console.Write(_board.PrintState(board));
+                var win = _judge.CheckBoard(board, (Player) p1);
 
-                //if (win == 1)
-                //{
-                //    Console.WriteLine(p1.GetPlayerColor() + " Connected Four, You Win!");
-                //}
+                if (win)
+                {
+                    Console.WriteLine("Yellow WINS !");
+                    break;
+                }
+                Console.Write("\n");
+                Console.WriteLine("Reds Turn ");
+                dropChoice = Convert.ToInt32(Console.ReadLine());
+                board = p2.DropCoin(board, dropChoice-1);
+                Console.Write(_board.PrintState(board));
+                win = _judge.CheckBoard(board, (Player)p2);
 
-                board = p2.DropCoin(board);
-                Console.Write(_board.PrintCurrentState(board));
-                //win = _judge.CheckBoard(board, (Player)p2);
+                if (win)
+                {
+                    Console.WriteLine("Reds WINS!");
+                    break;
+                }
 
-                //if (win == 1)
-                //{
-                //    Console.WriteLine(p2.GetPlayerColor() + " Connected Four, You Win!");
-                //}
+            } while (true);
 
-
-                //Console.Write(_board.PrintState(board));
-                
-            } while (win!=1);
-
-           
+            Console.ReadKey(true);
 
         }
     }

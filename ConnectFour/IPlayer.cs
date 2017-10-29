@@ -4,7 +4,7 @@
     {
         char GetPlayerColor();
         void SetPlayerColor(char color);
-        char[,] DropCoin(char[,] board);
+        char[,] DropCoin(char[,] board, int dropchoice);
         Player Create();
 
 

@@ -8,59 +8,65 @@ namespace ConnectFour
 {
     public class Judge : IJudge
     {
-        public int CheckBoard(char[,] board, Player player)
+        public bool CheckBoard(char[,] board, Player player)
         {
-            char XO;
-            int win;
+            
+            char playerColor = player.PlayerColor;
+            var win = false;
 
-            XO = player.PlayerColor;
-            win = 0;
-
-            for (int i = 8; i >= 1; --i)
+            for (int row = board.GetLength(0)-1; row >= 0; row--)
             {
 
-                for (int ix = 9; ix >= 1; --ix)
+                for (int col = board.GetLength(1)-1; col >= 0; col--)
                 {
 
-                    if (board[i, ix] == XO &&
-                        board[i - 1, ix - 1] == XO &&
-                        board[i - 2, ix - 2] == XO &&
-                        board[i - 3, ix - 3] == XO)
+                    if (col - 3 > 0 && row -3 > 0 && board[row, col] == playerColor &&
+                        board[row - 1, col - 1] == playerColor &&
+                        board[row - 2, col - 2] == playerColor &&
+                        board[row - 3, col - 3] == playerColor)
                     {
-                        win = 1;
+                        win = true;
+                        break;
                     }
 
 
-                    if (board[i, ix] == XO &&
-                        board[i, ix - 1] == XO &&
-                        board[i, ix - 2] == XO &&
-                        board[i, ix - 3] == XO)
+
+                    if (col - 3 > 0 && board[row, col] == playerColor &&
+                        board[row, col - 1] == playerColor &&
+                        board[row, col - 2] == playerColor &&
+                        board[row, col - 3] == playerColor)
                     {
-                        win = 1;
+                        win = true;
+                        break;
                     }
 
-                    if (board[i, ix] == XO &&
-                        board[i - 1, ix] == XO &&
-                        board[i - 2, ix] == XO &&
-                        board[i - 3, ix] == XO)
+                    if (row - 3 > 0 && board[row, col] == playerColor &&
+                        board[row - 1, col] == playerColor &&
+                        board[row - 2, col] == playerColor &&
+                        board[row - 3, col] == playerColor)
                     {
-                        win = 1;
+                        win = true;
+                        break;
                     }
 
-                    if (board[i, ix] == XO &&
-                        board[i - 1, ix + 1] == XO &&
-                        board[i - 2, ix + 2] == XO &&
-                        board[i - 3, ix + 3] == XO)
+
+
+                    if (col + 3 < board.GetLength(1) && row - 3 > 0 && board[row, col] == playerColor &&
+                        board[row - 1, col + 1] == playerColor &&
+                        board[row - 2, col + 2] == playerColor &&
+                        board[row - 3, col + 3] == playerColor)
                     {
-                        win = 1;
+                        win = true;
+                        break;
                     }
 
-                    if (board[i, ix] == XO &&
-                        board[i, ix + 1] == XO &&
-                        board[i, ix + 2] == XO &&
-                        board[i, ix + 3] == XO)
+                    if (col + 3 < board.GetLength(1) && board[row, col] == playerColor &&
+                        board[row, col + 1] == playerColor &&
+                        board[row, col + 2] == playerColor &&
+                        board[row, col + 3] == playerColor)
                     {
-                        win = 1;
+                        win = true;
+                        break;
                     }
                 }
 

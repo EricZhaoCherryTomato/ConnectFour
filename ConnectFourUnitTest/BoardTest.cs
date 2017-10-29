@@ -9,7 +9,7 @@ namespace ConnectFourUnitTest
     public class BoardTest
     {
         [Test]
-        public void BoardShouldPrintStartState()
+        public void Board_Should_Print_Start_State()
         {
             Board board = new Board();
             char[,] state = new Char[8,8];
@@ -24,25 +24,29 @@ namespace ConnectFourUnitTest
                                     " o o o o o o o o\r\n" +
                                     " o o o o o o o o\r";
 
-            Assert.AreEqual(expectedResult, sut);
+            Assert.AreEqual(sut, expectedResult);
 
         }
-    }
 
-    [TestFixture]
-    public class PlayerTest
-    {
         [Test]
-        public void Player_DropCoin_Should_Display_Correctly()
+        public void Board_Should_Print_Current_State()
         {
-            Player player = new Player();
-            var state = new int[8, 8];
+            Board board = new Board();
+            char[,] state = new Char[8,8];
+            state[7, 0] = 'r';
+            var sut = board.PrintState(state);
 
-            //var sut = player.DropCoin(state, "1");
+            string expectedResult = " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " o o o o o o o o\r\n" +
+                                    " r o o o o o o o\r";
 
-            //Assert.AreEqual(sut,state);
+            Assert.AreEqual(sut, expectedResult);
+
         }
-
     }
-    
 }

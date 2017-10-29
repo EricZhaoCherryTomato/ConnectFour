@@ -2,6 +2,6 @@
 {
     public interface IJudge
     {
-        int CheckBoard(char[,] board, Player player);
+        bool CheckBoard(char[,] board, Player player);
     }
 }

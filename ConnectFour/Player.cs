@@ -17,39 +17,32 @@ namespace ConnectFour
             PlayerColor = color;
         }
 
-        public char[,] DropCoin(char[,] board)
+        public char[,] DropCoin(char[,] board, int dropChoice)
         {
-            int dropChoice;
-            Console.Write("\n");
-            Console.WriteLine(this.PlayerColor + "'s Turn ");
-            do
-            {
-                Console.WriteLine("Please enter a number between 1 and 7: ");
-                dropChoice = Convert.ToInt32(Console.ReadLine());
-                dropChoice--;
-            } while (dropChoice < 0 || dropChoice > board.GetLength(1));
+            
+            //do
+            //{
+            //    Console.WriteLine("Please enter a number between 1 and 7: ");
+            //    //dropChoice = Convert.ToInt32(Console.ReadLine());
+            //    dropChoice--;
+            //} while (dropChoice < 0 || dropChoice > board.GetLength(1));
 
-            while (board[0, dropChoice] == 'y' || board[0, dropChoice] == 'r')
+            //while (board[0, dropChoice] == 'y' || board[0, dropChoice] == 'r')
+            //{
+            //    Console.WriteLine("That row is full, please enter a new row: ");
+            //    dropChoice = Convert.ToInt32(Console.ReadLine());
+            //}
+            
+
+            for (int row = board.GetLength(0)-1; row > 0; row--)
             {
-                Console.WriteLine("That row is full, please enter a new row: ");
-                dropChoice = Convert.ToInt32(Console.ReadLine());
+                if (board[row, dropChoice] == 'o')
+                {
+                    board[row, dropChoice] = this.PlayerColor;
+                    break;
+                }
             }
 
-            int length, turn;
-            length = board.GetLength(1)-1;
-            turn = 0;
-
-            do
-            {
-                if (board[length, dropChoice] != 'y' && board[length, dropChoice] != 'r')
-                {
-                    board[length, dropChoice] = this.PlayerColor;
-                    turn = 1;
-                }
-                else
-                    --length;
-            } while (turn != 1);
-            //board[7, dropChoice] = this.PlayerColor;
             return board;
         }
 

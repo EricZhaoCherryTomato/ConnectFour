@@ -23,8 +23,6 @@ namespace ConnectFour
                 builder.AppendLine();
             }
 
-            
-
             return builder.ToString(0, builder.Length - 1);
         }
 
