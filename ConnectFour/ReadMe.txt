@@ -2,12 +2,12 @@
 		DI -- Autofac
 		Console App
 
-Done:	Barely working connect 4 game with minimal unit test. Six Accepatnce test has been tested.
+Done:	Barely working connect 4 game with the minimal unit test. Six Acceptance test has been tested.
 
-To do:	Refactor Game class, apply state design patter to handle the board state change
+To do:	Refactor Game class, apply state design pattern r to handle the board state change
 		Remove all the magic string and int to app config and use config injector to replace
-		May also need add the observor to the Player and board when new coin drops	
-		Performace at this moment is not taken into account but need to refactor the alogrithm on the Judge to achieve Big O
+		May also need to add the observer to the Player and board when new coin drops	
+		Performace at this moment is not taken into account but need to refactor the algorithm on the Judge to achieve Big O
 
-Question for stakeholder: what kind of situation is regarded as invaild board demension? 
-							Currenly the game accept any number but character. Is there any limitation for the size of board?
+Question for stakeholder: what kind of situation is regarded as invalid board dimension? 
+							Currenly the game accepts any number but character. Is there any limitation for the size of the board?
