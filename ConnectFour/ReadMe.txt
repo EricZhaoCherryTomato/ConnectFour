@@ -5,6 +5,7 @@
 Done:	Barely working connect 4 game with minimal unit test. Six Accepatnce test has been tested.
 
 To do:	Refactor Game class, apply state design patter to handle the board state change
+		Remove all the magic string and int to app config and use config injector to replace
 		May also need add the observor to the Player and board when new coin drops	
 		Performace at this moment is not taken into account but need to refactor the alogrithm on the Judge to achieve Big O
 
