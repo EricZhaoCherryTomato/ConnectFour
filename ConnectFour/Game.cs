@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
@@ -17,7 +19,8 @@ namespace ConnectFour
         }
         public void Start()
         {
-            char[,] board = new char[5, 5];
+            var boardDimension = _board.InitBoard();
+            char[,] board = new char[boardDimension[0], boardDimension[1]];;
             var p1 = _player.Create();
             p1.SetPlayerColor('y');
             p1.SetPlayerName("Yellows");
@@ -30,8 +33,8 @@ namespace ConnectFour
 
             do
             {
-                if (GetValue(p1, board)) break;
-                if (GetValue(p2, board)) break;
+                if (GetMove(p1, board)) break;
+                if (GetMove(p2, board)) break;
                 
             } while (true);
 
@@ -39,18 +42,32 @@ namespace ConnectFour
 
         }
 
-        private bool GetValue(Player player,  char[,] board)
-        {
-            Console.Write("\n");
-            Console.WriteLine(player.PlayerName + " Turn ");
-            var dropChoice = Convert.ToInt32(Console.ReadLine());
-            board = player.DropCoin(board, dropChoice - 1);
-            Console.Write(_board.PrintState(board));
-            var win = _judge.CheckBoard(board, player);
+        
 
-            if (!win) return false;
-            Console.Write("\n");
-            Console.WriteLine(player.PlayerName + " WINS !");
+        private bool GetMove(Player player,  char[,] board)
+        {
+            var dropChoice = -1;
+            do
+            {
+                try
+                {
+                    Console.Write("\n");
+                    Console.WriteLine(player.PlayerName + " Turn ");
+                    dropChoice = Convert.ToInt32(Console.ReadLine());
+                    board = player.DropCoin(board, dropChoice - 1);
+                    Console.Write(_board.PrintState(board));
+                    var win = _judge.CheckBoard(board, player);
+
+                    if (!win) return false;
+                    Console.Write("\n");
+                    Console.WriteLine(player.PlayerName + " WINS !");
+                }
+                catch
+                {
+                    Console.Write("Invalid Move");
+                }
+            } while (dropChoice < 0);
+            
             return true;
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ConnectFour
@@ -46,8 +48,33 @@ namespace ConnectFour
             return builder.ToString(0, builder.Length - 1);
         }
 
-        public void Reset()
+        public int[] InitBoard()
         {
+            Console.WriteLine("Please enter board dimension with space separated, e.g. 5 5");
+            List<int> boardDimension = new List<int>();
+            do
+            {
+                boardDimension.Clear();
+                try
+                {
+                    foreach (var input in Console.ReadLine()?.Split())
+                    {
+                        boardDimension.Add(Convert.ToInt32(input));
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                if (boardDimension.Count != 2)
+                {
+                    Console.WriteLine("Wrong Input, try again");
+                }
+
+            } while (boardDimension.Count!=2);
+
+            return boardDimension.ToArray();
+
         }
     }
 }
