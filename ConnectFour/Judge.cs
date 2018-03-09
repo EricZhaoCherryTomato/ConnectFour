@@ -10,69 +10,58 @@ namespace ConnectFour
     {
         public bool CheckBoard(char[,] board, Player player)
         {
-            
-            char playerColor = player.PlayerColor;
-            var win = false;
 
-            for (int row = board.GetLength(0)-1; row >= 0; row--)
+            if (SomeoneWins(board))
             {
+                return true;
+            }
+            return false;
+            
+        }
 
-                for (int col = board.GetLength(1)-1; col >= 0; col--)
-                {
-
-                    if (col - 3 > 0 && row -3 > 0 && board[row, col] == playerColor &&
-                        board[row - 1, col - 1] == playerColor &&
-                        board[row - 2, col - 2] == playerColor &&
-                        board[row - 3, col - 3] == playerColor)
-                    {
-                        win = true;
-                        break;
-                    }
-
-
-
-                    if (col - 3 > 0 && board[row, col] == playerColor &&
-                        board[row, col - 1] == playerColor &&
-                        board[row, col - 2] == playerColor &&
-                        board[row, col - 3] == playerColor)
-                    {
-                        win = true;
-                        break;
-                    }
-
-                    if (row - 3 > 0 && board[row, col] == playerColor &&
-                        board[row - 1, col] == playerColor &&
-                        board[row - 2, col] == playerColor &&
-                        board[row - 3, col] == playerColor)
-                    {
-                        win = true;
-                        break;
-                    }
-
-
-
-                    if (col + 3 < board.GetLength(1) && row - 3 > 0 && board[row, col] == playerColor &&
-                        board[row - 1, col + 1] == playerColor &&
-                        board[row - 2, col + 2] == playerColor &&
-                        board[row - 3, col + 3] == playerColor)
-                    {
-                        win = true;
-                        break;
-                    }
-
-                    if (col + 3 < board.GetLength(1) && board[row, col] == playerColor &&
-                        board[row, col + 1] == playerColor &&
-                        board[row, col + 2] == playerColor &&
-                        board[row, col + 3] == playerColor)
-                    {
-                        win = true;
-                        break;
-                    }
-                }
-
+        public static bool AllFieldsTheSame(int startX, int startY, char[,] board, int dx, int dy)
+        {
+            int firstField = board[startY, startX];
+            if (firstField == 0)
+            {
+                return false;
             }
 
-            return win;
+            for (var i = 0; i < 4; i++)
+            {
+                int y = startY + dy * i;
+                int x = startX + dx * i;
+                if (board[y, x] != firstField)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool SomeoneWins(char[,] board)
+        {
+            // Check columns
+            for (var x = 0; x < board.GetLength(0); x++)
+            {
+                if (AllFieldsTheSame(x, 0, board, 0, 1))
+                    return true;
+            }
+
+            // Check rows
+            for (var y = 0; y < board.GetLength(1); y++)
+                if (AllFieldsTheSame(0, y, board, 1, 0))
+                    return true;
+
+            // Check diagonals
+            if (AllFieldsTheSame(0, 0, board, 1, 1))
+                return true;
+
+            if (AllFieldsTheSame(2, 0, board, -1, 1))
+                return true;
+
+            return false;
         }
     }
 }
