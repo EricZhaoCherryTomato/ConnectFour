@@ -5,7 +5,7 @@ namespace Connect
 {
     public class Checker : IChecker
     {
-        public int CheckBoard(char[][] board)
+        public int CheckBoard(int[,] board)
         {
             if (SomeoneWins(board))
             {
@@ -15,10 +15,10 @@ namespace Connect
             ;
         }
 
-        public static bool AllFieldsTheSame(int startX, int startY, char[][] board, int dx, int dy)
+        public static bool AllFieldsTheSame(int startX, int startY, int[,] board, int dx, int dy)
         {
-            char firstField = board[startY][startX];
-            if (firstField == ' ')
+            int firstField = board[startY, startX];
+            if (firstField == 0)
             {
                 return false;
             }
@@ -27,7 +27,7 @@ namespace Connect
             {
                 int y = startY + dy * i;
                 int x = startX + dx * i;
-                if (board[y][x] != firstField)
+                if (board[y ,x] != firstField)
                 {
                     return false;
                 }
@@ -36,17 +36,17 @@ namespace Connect
             return true;
         }
 
-        public bool SomeoneWins(char[][] board)
+        public bool SomeoneWins(int[,] board)
         {
             // Check columns
-            for (var x = 0; x < board.Length; x++)
+            for (var x = 0; x < board.GetLength(0); x++)
             {
                 if (AllFieldsTheSame(x, 0, board, 0, 1))
                     return true;
             }
 
             // Check rows
-            for (var y = 0; y < board.Length; y++)
+            for (var y = 0; y < board.GetLength(1); y++)
                 if (AllFieldsTheSame(0, y, board, 1, 0))
                     return true;
 
